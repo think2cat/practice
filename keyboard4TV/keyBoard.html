@@ -8,23 +8,27 @@
     <script type="text/javascript" src="scripts/jquery-1.4.3.min.js"></script>
     <script type="text/javascript" src="scripts/keyboardClass.js"></script>
     <script type="text/javascript">
-   		var keyCodeArr = {'left':37, 'up':38, 'right':39, 'down':40, 'enter':13, 'num0':48, 'num1':49, 'num2':50, 'num3':51, 'num4':52, 'num5':53, 'num6':54, 'num7':55, 'num8':56, 'num9':57, 'exit':88, 'fastplay':69, 'fastback':66, 'menu':77, 'pageUp':33, 'pageDn':34, 'volUp':447, 'volDn':448, 'play':76, 'pause':19, 'stop':79, 'playNext':78, 'playPrev':86, 'mute':85, 'red':112, 'green':113, 'yellow':114, 'blue':115};	//onkeydown
+		var keyCodeArr = {'left':37, 'up':38, 'right':39, 'down':40, 'enter':13, 'num0':48, 'num1':49, 'num2':50, 'num3':51, 'num4':52, 'num5':53, 'num6':54, 'num7':55, 'num8':56, 'num9':57, 'exit':88, 'fastplay':69, 'fastback':66, 'menu':77, 'pageUp':33, 'pageDn':34, 'volUp':447, 'volDn':448, 'play':76, 'pause':19, 'stop':79, 'playNext':78, 'playPrev':86, 'mute':85, 'red':112, 'green':113, 'yellow':114, 'blue':115};	//onkeydown
 
-			var gPos = 1;
-    	var kb = new keyboardClass(function(keyword){
-    		alert(keyword);
-    		gPos = 1;
-    	});
-    	
-			function keydown(evn){
-				if(gPos ==1){
-					gPos = 2;
-					kb.show();
-				}else{
-					kb.keyPress(evn.keyCode);
-				}
+		var gPos = 1;
+		var kb = new keyboardClass(function(keyword){
+			alert(keyword);
+			gPos = 1;
+		});
+		function a(){}
+	
+		function keydown(evn){
+			if(gPos ==1){
+				gPos = 2;
+				kb.show();
+			}else{
+				kb.keyPress(evn.keyCode);
 			}
-			document.addEventListener('keydown', keydown, false);
+		}
+		window.onload = function(){
+			keydown({'keyCode' : keyCodeArr.enter});
+			$(document).keydown(keydown);
+		}
     </script>
 </head>
 <body>

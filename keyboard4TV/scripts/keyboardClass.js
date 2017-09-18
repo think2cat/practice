@@ -4,7 +4,7 @@
      * for 海尔
      * @class
      * @param {Function}callback 回调函数，可为空
-     * @version 0.9.1.20
+     * @version 0.9.1.21
      * @author Gavin
      * @example
      * 初始化键盘对象，传进回调函数，也可先不传，有setCallback方法可设置回调函数
@@ -69,17 +69,17 @@
         hide: function() {
             //TODO 输入限制
             /*
-            if(this.limt.t == "number") {
-                var tmpKeyword = parseInt(this.keyword);
-                if(tmpKeyword == "NaN" || tmpKeyword == 0  || typeof(tmpKeyword) != this.limt.t) {
-                    this.setTip("只能输入数字");
-                    return;
-                }
-            } else if(this.limt.n > 0 && ("" + this.keyword).length > this.limt.n) {
-                this.setTip("输入字符超过" + this.limt.n + "个");
-                return;
-            }
-            */
+             if(this.limt.t == "number") {
+             var tmpKeyword = parseInt(this.keyword);
+             if(tmpKeyword == "NaN" || tmpKeyword == 0  || typeof(tmpKeyword) != this.limt.t) {
+             this.setTip("只能输入数字");
+             return;
+             }
+             } else if(this.limt.n > 0 && ("" + this.keyword).length > this.limt.n) {
+             this.setTip("输入字符超过" + this.limt.n + "个");
+             return;
+             }
+             */
             this.setTip();
             this.DOM.hide();
             this.callback(this.keyword);
@@ -179,7 +179,7 @@
          * @return {String}pinyin 拼音字母
          */
         getPinyin: function() {
-            return this.pinyin.p;
+            return "" + this.pinyin.p;
         },
         /**
          * 设置拼音
@@ -190,13 +190,13 @@
         setPinyin: function(str) {
             if (str) {
                 //if(this.pinyin.p == "") showTipMsg("输入拼音后，请用数字键1-9选择相应汉字");
-                if (typeof(str) == "string" || typeof(str) == "number") {
+                if (("" + str).length <= 6 && (typeof(str) == "string" || typeof(str) == "number")) {
                     this.pinyin.p = "" + str.toString();
                 }
             }
             this.pinyin.DOM.eq(0).text(this.pinyin.p);
             if (this.pinyin.p != "" && this.pinyin2ch(this.getPinyin()).length > 0) {
-                this.pinyinJumpPage(1);
+                this.pinyinJumpPage();
             } else {
                 //showTipMsg("无此拼音 " + this.getPinyin());
             }
@@ -208,7 +208,7 @@
          * @param {int}keyCode 键码
          */
         keyPress: function(keyNum) {
-            //			console.log("keyPress:" + keyNum);
+            //a("keyPress:" + keyNum);
             switch (keyNum) {
                 case keyCodeArr.exit:
                     this.keyword = null;
@@ -250,6 +250,10 @@
                         this.clearPinyin(); //清空
                     }
                     this.setKeyword(this.keyword + tmpStr);
+                    break;
+                case keyCodeArr.pageUp:
+                case keyCodeArr.pageDn:
+                    this.pinyinJumpPage(keyNum == keyCodeArr.pageUp ? -1 : 1);
                     break;
             }
         },
@@ -481,11 +485,18 @@
         /**
          * 显示汉字
          * @function
-         * @param {int}page 页数
+         * @param {int}p 翻页数，-1=向上翻页，1=向下翻页
          */
         pinyinJumpPage: function(p) {
-            //a("keyboardClass() >> pinyinJumpPage(" + p + ")" + this.pinyin.c);
-            if (p < 0) {
+            a("keyboardClass() >> pinyinJumpPage(" + p + ")" + this.pinyin.c);
+            if(this.getInputType() != "拼音")
+                return;
+            if(typeof(p) == "undefined") {
+               this.pinyin.page = 1;
+                p = 0;
+            }
+            p += this.pinyin.page;
+            if (p < 1) {
                 p = this.pinyin.totalpage;
             } else if (p > this.pinyin.totalpage) {
                 p = 1;
