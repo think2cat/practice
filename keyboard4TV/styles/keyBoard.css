@@ -1,0 +1,64 @@
+/* CSS Document
+2011年2月15日 20:02:10
+*/
+.keyboard{
+	width:781px;height:315px;
+	/*background:rgba(0,0,0,0.85) url(../images/keyBoard_bg.png);
+	background-color:#222;
+	border:2px solid rgba(0,0,0,0.85);*/
+	position:absolute;
+	bottom:0px;
+	left:50%;
+	font-size:24px;
+	margin:0 0 0 -390px;
+	line-height:51px;
+	padding:14px 28px;
+	z-index:9999;
+	border:2px solid #888;
+	border-bottom:none;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	background:#222;
+	-webkit-box-shadow:rgba(0,210,255,0.6) 0 0 35px;
+	}
+.keyboard .current{
+	color:#FFF;
+	background:url(../images/keyBoard_focus.png) no-repeat center bottom;
+	height:53px;
+	padding-top:18px;
+	margin-top:-18px;
+	margin-bottom:-2px;
+	position:relative;
+	z-index:2;
+	}
+.keyInput{color:#FFF;padding-left:21px;height:51px;line-height:51px;}
+.keySelect{color:#FFF;height:51px;}
+.keySelect li{float:left;width:89px;text-align:center;}
+.keyboardList li{height:51px;float:left;width:63px;text-align:center;}
+.keyboardList li.current{width:71px;margin-left:-4px;margin-right:-4px;}
+.keyboardList li:nth-child(11){width:142px;}
+.keyboardList li:nth-child(22){width:142px;}
+.keyboardList li:nth-child(33){width:142px;}
+
+.keyboardList li:nth-child(11).current{width:142px;margin-left:0;margin-right:0;}
+.keyboardList li:nth-child(22){width:142px;margin-left:0;margin-right:0;}
+.keyboardList li:nth-child(33){width:142px;margin-left:0;margin-right:0;}
+
+.keyboardLine{
+	position:absolute;left:40px;
+	width:758px;height:1px;
+	z-index:1;
+	/*background:rgba(26,31,32,0.5);*/ background-color:#333;}
+.keyline_1{top:116px;}
+.keyline_2{top:167px;}
+.keyline_3{top:218px;}
+.keyline_4{top:269px;}
+
+.keyText{float:left;}
+.keyCursor{float:left;width:11px;height:51px;display:inline-block;background:url(../images/cursor.png) no-repeat right center;}
+.keyBackSpace{height:51px;background:url(../images/keyBackSpace.png) no-repeat center center;}
+
+.keyboard .keyThisTitle{padding-left:21px;height:51px;line-height:51px;}
+
+
+

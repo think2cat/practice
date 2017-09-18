@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>keyBoard</title>
+    <link href="styles/public.css" rel="stylesheet" type="text/css" />
+    <link href="styles/keyBoard.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="scripts/jquery-1.4.3.min.js"></script>
+    <script type="text/javascript" src="scripts/keyboardClass.js"></script>
+    <script type="text/javascript">
+   		var keyCodeArr = {'left':37, 'up':38, 'right':39, 'down':40, 'enter':13, 'num0':48, 'num1':49, 'num2':50, 'num3':51, 'num4':52, 'num5':53, 'num6':54, 'num7':55, 'num8':56, 'num9':57, 'exit':88, 'fastplay':69, 'fastback':66, 'menu':77, 'pageUp':33, 'pageDn':34, 'volUp':447, 'volDn':448, 'play':76, 'pause':19, 'stop':79, 'playNext':78, 'playPrev':86, 'mute':85, 'red':112, 'green':113, 'yellow':114, 'blue':115};	//onkeydown
+
+			var gPos = 1;
+    	var kb = new keyboardClass(function(keyword){
+    		alert(keyword);
+    		gPos = 1;
+    	});
+    	
+			function keydown(evn){
+				if(gPos ==1){
+					gPos = 2;
+					kb.show();
+				}else{
+					kb.keyPress(evn.keyCode);
+				}
+			}
+			document.addEventListener('keydown', keydown, false);
+    </script>
+</head>
+<body>
+<!--
+<section class="keyboard f36">
+     <div class="keyInput"><div class="keyText">zhong</div><div class="keyCursor"></div></div>
+     <ul class="keySelect">
+         <li>1.中</li>
+         <li>2.重</li>
+         <li class="current">3.肿</li>
+         <li>4.钟</li>
+         <li>5.忠</li>`
+         <li>6.终</li>
+         <li>7.种</li>
+         <li>8.众</li>
+     </ul>
+     <ul class="keyboardList">
+         <li>1</li>
+         <li>2</li>
+         <li>3</li>
+         <li>4</li>
+         <li>5</li>
+         <li>6</li>
+         <li>7</li>
+         <li>8</li>
+         <li>9</li>
+         <li>0</li>
+         <li><div class="keyBackSpace"></div></li>
+         <li>,</li>
+         <li>.</li>
+         <li>?</li>
+         <li>;</li>
+         <li>:</li>
+         <li>!</li>
+         <li>"</li>
+         <li>(</li>
+         <li>)</li>
+         <li>/</li>
+         <li>abc</li>
+         <li>@</li>
+         <li>#</li>
+         <li>$</li>
+         <li>%</li>
+         <li>*</li>
+         <li>&amp;</li>
+         <li>_</li>
+         <li>-</li>
+         <li><</li>
+         <li>></li>
+         <li>enter</li>
+     </ul>
+     <div class="keyboardLine keyline_1"></div>
+     <div class="keyboardLine keyline_2"></div>
+     <div class="keyboardLine keyline_3"></div>
+     <div class="keyboardLine keyline_4"></div>
+</section>
+-->
+</body>
+</html>

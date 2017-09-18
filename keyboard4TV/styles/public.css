@@ -1,0 +1,304 @@
+@charset "utf-8";
+/* CSS Document */
+body,ul,ol,li,h1,h2,h3,h4,p {margin:0; padding:0;}
+html,body{width:100%;height:100%;}
+body {
+font-family:微软雅黑,Verdana, Geneva, sans-serif;
+font-size:32px;
+background:-webkit-gradient(radial,733 500,0,733 500,450, from(#1B1B1B), to(#000));
+color:#CCC;
+margin:0;
+text-shadow:#000 2px 2px 2px;
+}
+ul{margin:0;padding:0;list-style:none;}
+.lf{float:left;}
+.rf{float:right}
+.f24{font-size:24px;}
+.f32{font-size:36px;}
+.f36{font-size:36px;}
+.f38{font-size:38px;}
+.current{color:#0CF}
+
+/* 共用css */
+header{
+	height:120px;
+    background:url(../images/logo.png) no-repeat 33px 22px;
+	padding-left:150px;
+	}
+.channeName{
+	font-size:48px;color:#FFF;
+	line-height:64px;height:64px;
+	width:200px;padding-top:15px;
+	position:relative;
+}
+.channeNameCover{
+	position:absolute;
+	width:200px;height:40px;
+	top:27px;left:0;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,0)),to(rgba(0,0,0,0)),color-stop(0.5,rgba(0,0,0,0.5)));
+}
+.localPath{
+	position:absolute;
+	left:320px;
+	top:38px;
+	height:32px;
+	line-height:32px;
+	font-size:30px;
+	color:#999;
+	}
+
+.nav{
+	width:210px;
+	height:730px;
+	padding:120px 0 0 50px;
+	line-height:100%;
+	position:relative;
+}
+.nav li{height:100px;}
+.navCover{
+	width:210px;height:730px;position:absolute;top:120px;left:50px;
+    background:-webkit-gradient(linear,left top,right top,from(rgba(0,0,0,0.5)),to(rgba(0,0,0,1)));
+	display:none;
+}
+.songListContainter{
+	width:1089px;height:850px;
+	position:relative;
+}
+.listInfo{position:absolute;top:-50px;right:110px;height:36px;line-height:36px;color:#333;}
+.songPage{padding-left:50px;}
+.songListBox{
+	width:925px;
+	height:830px;
+	padding:20px 32px 0 32px;
+	position:relative;}
+.leftLight{
+	position:absolute;top:0;left:0;
+	width:2px;height:860px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(255,255,255,0)),color-stop(0.2,rgba(255,255,255,0.1)),color-stop(0.8,rgba(255,255,255,0.1)));
+	}
+.rightLight{
+	position:absolute;top:0;right:0;
+	width:2px;height:860px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(255,255,255,0)),color-stop(0.2,rgba(255,255,255,0.1)),color-stop(0.8,rgba(255,255,255,0.1)));
+	}
+.leftHighLight{
+	height:400px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(255,255,255,0)),color-stop(0.5,rgba(255,255,255,0.8)));
+	}
+.rightHighLight{
+	height:400px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(255,255,255,0)),color-stop(0.5,rgba(255,255,255,0.8)));
+	}
+
+.songList{width:925px;height:830px;}
+.songList li{padding-left:110px;height:90px;line-height:90px;border-bottom:2px solid #1F1F1F;}
+.songList li:last-child {border:none}
+.songList li div{height:90px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.songListInd{width:120px;}
+.songListTitle{width:420px;}
+.songListName{width:170px;}
+.songListLength{width:90px;text-align:right;}
+
+.songList li.current{position:relative;}
+.songListBlueLight{display:none;position:absolute;background:url(../images/focusBg.png) no-repeat left center;top:0;left:-32px;width:989px;height:90px;}
+.songList li.current .songListBlueLight{display:block;}
+.songList li.played{background:url(../images/playArrow.png) no-repeat 30px center;}
+.songList li.selected{position:relative;}
+.songList li.selected  .songListBlueLight{display:block;}
+
+.songMikeList{width:90px;padding-top:20px;height:830px;}
+.songMikeList li{height:92px;background:url(../images/mike.png) no-repeat left center;}
+.songMikeList li.disable{background-image:none;}
+.songMikeList li.current{background-image:url(../images/mike_focus.png);}
+
+.lrcContainter{
+	width:490px;
+	height:820px;
+	padding:30px 50px 0 0;
+}
+.lrcHeader{height:150px;line-height:150%;}
+.albumCover{margin-right:35px;width:150px;height:150px;overflow:hidden;}
+.lrcTitle{color:#FFF;}
+.lrcPlayedTimer{height:55px;line-height:55px; text-align:right;font-size:28px;color:#FFF;}
+.lrcBar{height:12px;background-color:#151515;position:relative;border:3px solid #151515;}
+.lrcBarLoaded{width:50%;background-color:#666;height:12px;}
+.lrcBarPlayed{height:12px;width:30%;background-color:#060;position:absolute;top:0px;left:0;height:12px;}
+
+.lrcBox{margin-top:30px;height:512px;overflow:hidden;position:relative;}
+.lrcList{line-height:64px;text-align:center;}
+.lrcList li{height:64px;}
+.lrcBoxCover{
+	height:512px;
+	position:absolute;top:0;left:0;
+	width:490px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,1)),to(rgba(0,0,0,1)),color-stop(0.35,rgba(0,0,0,0.5)),
+	color-stop(0.4,rgba(0,0,0,0)),color-stop(0.5,rgba(0,0,0,0)),color-stop(0.55,rgba(0,0,0,0.5)));
+	}
+
+footer{height:100px;clear:both;}
+.operateTipsText{float:left;padding:20px 0 0 50px;}
+.operateTips{float:right;padding:20px 0 0 0;}
+.operateTips>li{float:left;height:36px;line-height:36px;width:180px;position:relative;}
+.tipsKeyA{float:left;width:36px;height:36px; background:url(../images/a.png) no-repeat center center;}
+.tipsKeyB{float:left;width:36px;height:36px; background:url(../images/b.png) no-repeat center center;}
+.tipsKeyC{float:left;width:36px;height:36px; background:url(../images/c.png) no-repeat center center;}
+.tipsKeyD{float:left;width:36px;height:36px; background:url(../images/d.png) no-repeat center center;}
+.tipsKeyOk{float:left;width:36px;height:36px;background:url(../images/ok.png) no-repeat center center;}
+
+.singerInd{
+	width:160px;
+	height:730px;
+	padding:115px 0 0 0px;
+	text-align:center;
+	position:relative;
+	line-height:59px;
+	}
+.singerIndCover{
+	width:156px;height:730px;position:absolute;top:115px;left:2px;
+    background:-webkit-gradient(linear,left top,right top,from(rgba(0,0,0,0.5)),to(rgba(0,0,0,1)));
+	display:none;
+	}
+
+.singerList{width:1374px;height:730px;padding-top:50px;position:relative;margin-top:60px}
+.singerList li img{float:left;width:100px;padding:15px 15px 15px 0;}
+.singerList li{float:left;height:130px;width:438px;line-height:130px;margin-right:20px}
+.singerList li.current{
+	color:#FFF;
+	border-radius:20px;
+	-webkit-box-shadow:rgba(0,153,255,0.65) 0 0 30px;
+	position:relative;top:0;
+	left:-20px;
+	padding:0;
+	height:90px;
+	width:398px;
+	background:url(../images/singerBg.png) no-repeat;
+	border-width:20px;
+	-webkit-border-image:url(../images/singerBg.png) 20;
+	line-height:90px;
+	}
+.singerList li.current img{padding:0 15px 0 0;margin-top:-5px;}
+.searchBox{
+	width:530px;height:522px;
+	border:2px solid #333;
+	position:absolute;
+	top:-550px;left:-50px;
+	border-radius:20px;
+	background-color:#000;
+	-webkit-box-shadow:rgba(0,204,255,0.5) 0 0 25px;
+	}
+.searchArrow{width:80px;height:40px;position:absolute;left:80px;bottom:-40px;overflow:hidden;}
+.arrowTrans{
+	width:15px;height:15px;border:2px solid #333;
+	background-color:#000;
+	-webkit-box-shadow:rgba(0,204,255,0.5) 0 0 25px;
+	position:absolute;left:30px;top:-9px;
+	-webkit-transform: rotateZ(45deg);
+	}
+.searchOption{line-height:73px;width:260px;padding:40px 0 30px 30px;}
+.searchRight{line-height:73px;width:218px;padding:40px 0 0 0;text-align:center;}
+.searchRight>li.current{background:url(../images/focusBg.png) no-repeat left center,url(../images/focusBg.png) no-repeat right center;line-height:85px;margin:-6px 0;}
+.searchLine{
+	position:absolute;top:10px;left:310px;
+	width:2px;height:480px;
+	padding-top:20px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(255,255,255,0)),
+	color-stop(0.2,rgba(255,255,255,0.1)),color-stop(0.8,rgba(255,255,255,0.1)));
+	}
+.searchLineLight{
+	height:200px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(255,255,255,0)),color-stop(0.5,rgba(255,255,255,0.8)));
+	}
+.searchNoRight{width:320px;}
+.searchNoRight .searchRight{display:none;}
+.searchNoRight .searchLine{display:none;}
+
+.settingBox{
+	width:530px;height:220px;
+	border:2px solid #333;
+	position:absolute;
+	top:-250px;left:-380px;
+	border-radius:20px;
+	background-color:#000;
+	-webkit-box-shadow:rgba(0,204,255,0.5) 0 0 25px;
+	}
+.settingBox .searchArrow{left:410px;}
+.settingOption{padding:20px 0 0 0px;}
+.settingOption li{height:90px;line-height:90px;padding:0 20px 0 50px ;}
+.settingOption li.current{background:url(../images/focusBg.png) no-repeat left center,url(../images/focusBg.png) no-repeat right center;}
+.settingLeft{width:180px;}
+.settingRight{width:280px; text-align:center;}
+.goLeft{background:url(../images/optionLeft.png) no-repeat left center,url(../images/optionRightDis.png) no-repeat right center;}
+.goRight{background:url(../images/optionRight.png) no-repeat right center,url(../images/optionLeftDis.png) no-repeat left center;}
+.goLeftRight{background:url(../images/optionLeft.png) no-repeat left center,url(../images/optionRight.png) no-repeat right center}
+.goLeftRightDis{background:url(../images/optionRightDis.png) no-repeat right center,url(../images/optionRightDis.png) no-repeat right center;}
+
+.floatWindow{width:100%;height:100%;position:absolute;top:0;left:0;}
+.floatWindowBg{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.6;background-color:#000;}
+.floatWindowBox{width:1000px;height:742px;position:absolute;top:50%;left:50%;margin:-371px 0 0 -500px;background-color:#000;opacity:0.95;}
+
+.ringLeft{width:253px;line-height:75px;height:600px;padding:80px 0 0 2px;}
+.ringLeft li{padding-left:48px;}
+.ringLeft li.current{
+	line-height:85px;height:85px;
+	margin:-5px 0;
+	background:url(../images/focusBg.png) no-repeat left center,url(../images/focusBg.png) no-repeat right center;
+	}
+.ringRight{width:660px;line-height:75px;height:600px;padding:80px 40px 0 0;}
+.windowLine{
+	position:absolute;top:50px;left:253px;
+	width:2px;height:600px;
+	padding-top:40px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(255,255,255,0)),
+	color-stop(0.2,rgba(255,255,255,0.1)),color-stop(0.8,rgba(255,255,255,0.1)));
+	}
+.windowLineLight{
+	height:500px;
+	background:-webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0)),to(rgba(255,255,255,0)),color-stop(0.5,rgba(255,255,255,0.8)));
+	}
+.ringRight li{height:75px;}
+.ringRight li.ringRTitle{padding-bottom:30px;}
+.ringRight li.ringRBtn{padding:30px 0; }
+.ringRight li.ringRPrice{color:#666;}
+.ringFormLeft{float:left;width:220px;}
+.ringFormRight{float:right;width:440px;height:75px;}
+.button{display:inline-block;padding-left:100px;font-size:40px;font-weight:700;}
+.input{width:339px;text-align:center;border:4px solid #333;height:67px;line-height:67px;font-size:48px;color:#999;}
+.ringFormRight .input{float:left;}
+.checkBox{width:24px;height:24px;border:3px solid #CCC;background-color:#333;float:left;margin:24px 20px 0 0;}
+.contactsIcon{background:url(../images/contacts.png) no-repeat left top;width:74px;height:75px;float:right;}
+
+.ringPhoneNum .current{border-color:#0CF;color:#0CF;}
+.ringCheck .current{border-color:#0CF}
+.ringCheck .selected{background:#333 url(../images/checkBox.png) no-repeat center center}
+.ringOtherSide .current{border-color:#0CF;color:#0CF;background-image:url(../images/contactsFocus.png);}
+.ringOtherSide .input{background:none!important;}
+.ringRBtn .current{text-shadow:#0CF 0 0 40px;}
+
+.reCodeTitle{padding-bottom:50px;}
+.reCodeTitle{padding-bottom:50px;}
+.reCodeInput{padding-left:100px;}
+li.reCodeBtn{padding-left:130px;line-height:160px;height:160px;}
+.reCodeBtn .current{text-shadow:#0CF 0 0 40px;}
+
+.contactsBox{width:680px;height:600px;padding:80px 40px 0 0;}
+.contactsLeftBox{border:2px solid #333;width:586px;height:600px;}
+.contactsRightBox{width:90px;text-align:center;line-height:58px;padding-top:2px;}
+.contactsRightBox>li.current{border:2px solid #333;margin:-2px;background:#000;border-left:none;}
+.contactsRightBox>li.selected{border:2px solid #333;margin:-2px;background:#000;border-left:none;}
+
+.contactsList{padding:40px 0 0 0;height:520px;}
+.contactsList>li{height:72px;line-height:72px;padding-left:70px;}
+.contactsName{width:200px;display:inline-block;}
+.contactsNum{display:inline-block;}
+.contactsList>li.current{height:86px;line-height:86px;margin:-7px 0;background:url(../images/focusBg.png) no-repeat left center,url(../images/focusBg.png) no-repeat right center;}
+
+.contactsOperateTips{height:40px;line-height:40px;background-color:#1A1A1A;padding-left:120px;}
+.contactsOperateTips>li{display:inline-block;width:120px;padding-top:2px;line-height:32px;}
+
+.addContactsBox{width:720px;height:600px;padding:80px 0 0 0;}
+.addContactsStep{padding:200px 0 0 60px;line-height:58px;width:660px;height:100px;}
+.addContactsStep .tipsKeyOk{float:none;display:inline-block;width:50px; background-position:center bottom;}
+
+.contactsBar{height:80px;line-height:65px;}
+.contactsImport{float:left;width:498px;height:61px;border:2px solid #333;padding:2px;margin-right:10px;}
+.contactsProgress{height:61px; background-color:#00CCFF;width:0;}
