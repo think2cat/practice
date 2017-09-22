@@ -1,0 +1,12 @@
+#icon-bitdefender
+{
+background-color: transparent;
+background-image: url("bdlogo32.png");
+background-repeat: no-repeat;
+background-attachment: scroll;
+}
+
+.explain
+{
+font-size: 10px;
+}
