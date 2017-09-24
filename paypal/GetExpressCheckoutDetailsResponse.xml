@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cc="urn:ebay:apis:CoreComponentTypes" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:market="urn:ebay:apis:Market" xmlns:auction="urn:ebay:apis:Auction" xmlns:sizeship="urn:ebay:api:PayPalAPI/sizeship.xsd" xmlns:ship="urn:ebay:apis:ship" xmlns:skype="urn:ebay:apis:skype" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" xmlns:ebl="urn:ebay:apis:eBLBaseComponents" xmlns:ns="urn:ebay:api:PayPalAPI">
+	<SOAP-ENV:Header>
+		<Security xmlns="http://schemas.xmlsoap.org/ws/2002/12/secext" xsi:type="wsse:SecurityType"/>
+		<RequesterCredentials xmlns="urn:ebay:api:PayPalAPI" xsi:type="ebl:CustomSecurityHeaderType">
+			<Credentials xmlns="urn:ebay:apis:eBLBaseComponents" xsi:type="ebl:UserIdPasswordType">
+				<Username xsi:type="xs:string"/>
+				<Password xsi:type="xs:string"/>
+				<Signature xsi:type="xs:string">Aso6eAHtK.u4X1Ms278RVyHgjMgjA4yQCWKhirsyju7QeGBLV0-b2cb-</Signature>
+				<Subject xsi:type="xs:string"/>
+			</Credentials>
+		</RequesterCredentials>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body id="_0">
+		<DoExpressCheckoutPaymentResponse xmlns="urn:ebay:api:PayPalAPI">
+			<Timestamp xmlns="urn:ebay:apis:eBLBaseComponents">2008-05-05T07:56:38Z</Timestamp>
+			<Ack xmlns="urn:ebay:apis:eBLBaseComponents">Success</Ack>
+			<CorrelationID xmlns="urn:ebay:apis:eBLBaseComponents">167cc5fc71e87</CorrelationID>
+			<Version xmlns="urn:ebay:apis:eBLBaseComponents">1.000000</Version>
+			<Build xmlns="urn:ebay:apis:eBLBaseComponents">548868</Build>
+			<DoExpressCheckoutPaymentResponseDetails xmlns="urn:ebay:apis:eBLBaseComponents" xsi:type="ebl:DoExpressCheckoutPaymentResponseDetailsType">
+				<Token xsi:type="ebl:ExpressCheckoutTokenType">EC-60499907HA323812X</Token>
+				<PaymentInfo xsi:type="ebl:PaymentInfoType">
+					<TransactionID>84V49327HA333602X</TransactionID>
+					<ParentTransactionID xsi:type="ebl:TransactionId"/>
+					<ReceiptID/>
+					<TransactionType xsi:type="ebl:PaymentTransactionCodeType">express-checkout</TransactionType>
+					<PaymentType xsi:type="ebl:PaymentCodeType">instant</PaymentType>
+					<PaymentDate xsi:type="xs:dateTime">2008-05-05T07:56:37Z</PaymentDate>
+					<GrossAmount xsi:type="cc:BasicAmountType" currencyID="USD">55.00</GrossAmount>
+					<FeeAmount xsi:type="cc:BasicAmountType" currencyID="USD">1.90</FeeAmount>
+					<TaxAmount xsi:type="cc:BasicAmountType" currencyID="USD">0.00</TaxAmount>
+					<ExchangeRate xsi:type="xs:string"/>
+					<PaymentStatus xsi:type="ebl:PaymentStatusCodeType">Completed</PaymentStatus>
+					<PendingReason xsi:type="ebl:PendingStatusCodeType">none</PendingReason>
+					<ReasonCode xsi:type="ebl:ReversalReasonCodeType">none</ReasonCode>
+				</PaymentInfo>
+			</DoExpressCheckoutPaymentResponseDetails>
+		</DoExpressCheckoutPaymentResponse>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
