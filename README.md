@@ -1,5 +1,13 @@
 # 小练习 | Practice
 
+
+
+[checkbox美化](https://github.com/think2cat/practice/tree/master/checkbox_label)
+
+![image](https://github.com/think2cat/practice/blob/master/checkbox_label/screenshot.png)
+
+
+
 [城市下拉框三级联动](https://github.com/think2cat/practice/tree/master/Select4CityofChina)
 
 ![image](https://github.com/think2cat/practice/blob/master/Select4CityofChina/screenshot.png)
