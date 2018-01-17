@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件委托</title>
+    <style>
+        ul{
+            border:1px solid;
+            padding:0;
+            list-style-type: none;
+        }
+        li{
+            height:20px;
+            width:100px;
+            border:1px solid;
+            margin:10px;
+        }
+        span{
+            border:1px solid red;
+        }
+        div{
+            padding:20px;
+            background-color: aqua;
+        }
+    </style>
+    <script>
+        let init = () => {
+            /*
+            let liArr = document.getElementsByTagName("li");
+            for(let i = 0; i < liArr.length; i++){                
+                liArr[i].addEventListener("click",(evt)=>{
+                    console.log("click li");
+                });
+            }
+            let spanArr = document.getElementsByTagName("span");
+            for(let i = 0; i < spanArr.length; i++){                
+                spanArr[i].addEventListener("click",(evt)=>{
+                    console.log("click span");
+                    evt.stopPropagation();
+                });
+            }
+            */
+            document.getElementsByTagName("div")[0].addEventListener("click",(evt)=>{
+                console.log(evt,this,this == evt.target);
+                if("span" == evt.target.nodeName.toLocaleLowerCase()){
+                    console.log("is a span", evt.target.innerText);
+                }else if("li" == evt.target.nodeName.toLocaleLowerCase()){
+                    console.log("is a li", evt.target.innerText);
+                }
+            });
+        };
+        window.onload = init;
+    </script>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>AA <span>A1</span> <span>A2</span></li>
+            <li>BB <span>B1</span> <span>B2</span></li>
+            <li>CC <span>C1</span> <span>C2</span></li>
+        </ul>
+        <ul>
+            <li>DD <span>D1</span> <span>D2</span></li>
+            <li>EE <span>E1</span> <span>E2</span></li>
+            <li>FF <span>F1</span> <span>F2</span></li>
+        </ul>
+    </div>
+</body>
+</html>
