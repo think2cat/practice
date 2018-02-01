@@ -15,6 +15,10 @@
 <script>
 const CityJSON = [
   {
+    code: "",
+    name: "省级",
+  },
+  {
     code: "110000",
     name: "北京市",
     children: [
@@ -14812,9 +14816,9 @@ const CityJSON = [
 export default {
   data() {
     return {
-      provinceId: "",
-      cityId: "",
-      areaId: "",
+      provinceId: 0,
+      cityId: 0,
+      areaId: 0,
       item1: [],
       item2: [],
       item3: []
@@ -14826,19 +14830,32 @@ export default {
   },
   watch: {
     provinceId() {
-      this.item2 = this.getCityByCode(this.provinceId);
+      this.item2 = [{
+        code: "",
+        name: "市级"
+      }];
+      if(this.provinceId){
+        this.item2 = this.item2.concat(this.getCityByCode(this.provinceId));
+      }
       this.cityId = this.item2[0].code;
+      this.onChange();
     },
     cityId() {
-      this.item3 = this.getCityByCode(this.cityId);
-      this.areaId = this.item3[0].code;
+      this.item3 = [{
+        code: "",
+        name: "县、区级"
+      }];
+      if(this.cityId){
+        this.item3 = this.item2.concat(this.getCityByCode(this.cityId));
+      }
+      this.areaId = this.item3[0].code;      
+      this.onChange();
     },
     areaId() {
-      this.$emit("change", this.areaId);
+      this.onChange();
     },
     val() {
       let ret = this.getCityByCode(this.val);
-      //console.log("this.val", this.val, ret);
       if (3 == ret.length) {
         this.provinceId = ret[0];
         setTimeout(() => {
@@ -14896,6 +14913,15 @@ export default {
         });
       });
       return ret;
+    },
+    onChange(){
+      let ret = {
+        provinceId: this.provinceId,
+        cityId: this.cityId,
+        areaId: this.areaId
+      };
+      //console.log("onchange",ret);
+      this.$emit("change", ret);
     }
   }
 };
