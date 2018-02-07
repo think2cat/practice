@@ -14846,7 +14846,7 @@ export default {
         name: "县、区级"
       }];
       if(this.cityId){
-        this.item3 = this.item2.concat(this.getCityByCode(this.cityId));
+        this.item3 = this.item3.concat(this.getCityByCode(this.cityId));
       }
       this.areaId = this.item3[0].code;      
       this.onChange();
@@ -14855,9 +14855,12 @@ export default {
       this.onChange();
     },
     val() {
+      if("undefined" == typeof(this.val) || "" == this.val){
+        return;
+      }
       let ret = this.getCityByCode(this.val);
       if (3 == ret.length) {
-        this.provinceId = ret[0];
+        this.provinceId = ret[0];        
         setTimeout(() => {
           this.cityId = ret[1];          
           setTimeout(()=>{
@@ -14865,14 +14868,15 @@ export default {
           },10);
         }, 10);
       }
-    }
+      
+    }    
   },
   props: ["val"],
   methods: {
     getCityByCode(code) {
       let tmp = [],
         ret = [];
-      if ("undefined" == typeof code) {
+      if ("undefined" == typeof code || "" == code) {
         tmp = CityJSON;
       } else {
         for (let i = 0; i < CityJSON.length; i++) {
@@ -14920,7 +14924,6 @@ export default {
         cityId: this.cityId,
         areaId: this.areaId
       };
-      //console.log("onchange",ret);
       this.$emit("change", ret);
     }
   }
