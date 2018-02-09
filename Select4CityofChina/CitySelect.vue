@@ -14816,15 +14816,21 @@ const CityJSON = [
 export default {
   data() {
     return {
+      inputDom:[],
       provinceId: 0,
       cityId: 0,
       areaId: 0,
+      provinceName: "",
+      cityName: "",
+      areaName: "",
       item1: [],
       item2: [],
-      item3: []
+      item3: [],
+      timer:0
     };
   },
   mounted() {
+    this.inputDom = $(this.$el).find("select");
     this.item1 = this.getCityByCode();
     this.provinceId = this.item1[0].code;
   },
@@ -14833,32 +14839,59 @@ export default {
       this.item2 = [{
         code: "",
         name: "市级"
-      }];
+      }];      
+      this.cityName = "";
+      this.cityId = this.item2[0].code;
+      this.areaName = "";
       if(this.provinceId){
         this.item2 = this.item2.concat(this.getCityByCode(this.provinceId));
+        setTimeout(()=>{          
+          this.provinceName = this.item1[this.inputDom[0].selectedIndex].name;
+          this.onChange();
+        },10);
+      }else{
+        this.provinceName = "";
+        this.onChange();
       }
-      this.cityId = this.item2[0].code;
-      this.onChange();
+      //this.cityName = this.item2[0].name;
     },
     cityId() {
       this.item3 = [{
         code: "",
         name: "县、区级"
-      }];
+      }];      
+      this.areaName = "";
+      this.areaId = this.item3[0].code;
       if(this.cityId){
         this.item3 = this.item3.concat(this.getCityByCode(this.cityId));
+        setTimeout(()=>{
+          this.cityName = this.item2[this.inputDom[1].selectedIndex].name;
+          this.onChange();
+        },10);
+      }else{
+        this.cityName = "";
+        this.onChange();
       }
-      this.areaId = this.item3[0].code;      
-      this.onChange();
+      //this.areaName = this.item3[0].name;
     },
     areaId() {
-      this.onChange();
+      //this.areaName = this.item3[this.inputDom[2].selectedIndex].name;      
+      if(this.areaId){
+          setTimeout(()=>{
+            this.areaName = this.item3[this.inputDom[2].selectedIndex].name;
+            this.onChange();
+          },10);
+      }else{
+        this.areaName = "";
+        this.onChange();
+      }
     },
     val() {
       if("undefined" == typeof(this.val) || "" == this.val){
         return;
       }
       let ret = this.getCityByCode(this.val);
+      //console.log("ret",this.val,ret);
       if (3 == ret.length) {
         this.provinceId = ret[0];        
         setTimeout(() => {
@@ -14922,9 +14955,17 @@ export default {
       let ret = {
         provinceId: this.provinceId,
         cityId: this.cityId,
-        areaId: this.areaId
+        areaId: this.areaId,
+        provinceName: this.provinceName,
+        cityName: this.cityName,
+        areaName: this.areaName,
+        str:this.provinceName + this.cityName + this.areaName
       };
-      this.$emit("change", ret);
+      clearTimeout(this.timer);
+      this.timer = setTimeout(()=>{
+        //console.log("change",ret);
+        this.$emit("change", ret);
+      },50);
     }
   }
 };
