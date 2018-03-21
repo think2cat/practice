@@ -14834,6 +14834,7 @@ export default {
     this.item1 = this.getCityByCode();
     this.provinceId = this.item1[0].code;
   },
+  props: ["val"],
   watch: {
     provinceId() {
       this.item2 = [{
@@ -14887,11 +14888,14 @@ export default {
       }
     },
     val() {
-      if("undefined" == typeof(this.val) || "" == this.val){
+      if("undefined" == typeof(this.val) || "" === this.val){
+        return;
+      }else if(false === this.val){
+        //传入false表示重置
+        this.provinceId = "";
         return;
       }
       let ret = this.getCityByCode(this.val);
-      //console.log("ret",this.val,ret);
       if (3 == ret.length) {
         this.provinceId = ret[0];        
         setTimeout(() => {
@@ -14904,7 +14908,6 @@ export default {
       
     }    
   },
-  props: ["val"],
   methods: {
     getCityByCode(code) {
       let tmp = [],
