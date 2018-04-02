@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WebSocket</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <script>
+    var showLog = (str) =>{
+        let dom = document.getElementById("container");
+        let tmp = dom.innerHTML;
+        tmp = str + "<br />" + tmp;
+        dom.innerHTML = tmp;
+    };
+    var ws = new WebSocket('ws://localhost:8080');
+    ws.onopen =  (event) => {
+      console.log('ws onopen',event);
+      ws.send('from client: hello');
+    };
+    ws.onmessage = (event) => {
+      console.log('ws onmessage');
+      console.log('from server: ', event);
+		console.log(ws);
+      showLog(event.data);
+    };
+	ws.onclose = (event) => {
+		console.log("close", event);
+		console.log(ws);
+	};
+	ws.onerror = (event) => {
+		console.log("error", event);
+		console.log(ws);
+	};
+  </script>
+</head>
+
+<body>
+  <div id="container"></div>
+</body>
+</html>
