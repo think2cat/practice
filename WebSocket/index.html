@@ -1,39 +1,83 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>WebSocket</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <script>
-    var showLog = (str) =>{
-        let dom = document.getElementById("container");
-        let tmp = dom.innerHTML;
-        tmp = str + "<br />" + tmp;
-        dom.innerHTML = tmp;
+    var showLog = (str) => {
+      let dom = document.getElementById("container");
+      let tmp = dom.innerHTML;
+      tmp = str + "<br />" + tmp;
+      dom.innerHTML = tmp;
     };
-    var ws = new WebSocket('ws://localhost:8080');
-    ws.onopen =  (event) => {
-      console.log('ws onopen',event);
+    
+    var heartCheck = {
+      timer: 0,
+      _obj : null,
+      _callback:null,
+      init: function(wsObj, callback) {
+        console.log("init");
+        this._obj = wsObj;
+        callback && (this._callback = callback);
+        this.sayHi();
+      },
+      sayHi: function() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+          console.log("time's out!")
+          this.onError();
+        }, 10000);
+        this._obj.send("hi," + this.timer);
+        console.log("sayHi:" + this.timer);
+      },
+      clear: function(flag) {
+        console.log("clear:" + this.timer);
+        clearTimeout(this.timer);
+        if(true === flag){
+          console.log("heartCheck finished");
+          return;
+        }
+        setTimeout(()=>{
+          this.sayHi();
+        }, 3000);
+      },
+      onError: function() {
+        console.log("onError:",this.timer);
+        clearTimeout(this.timer);
+        this._callback && this._callback();
+      }
+    };
+    //let hc = new heartCheck();
+    let uri = "ws://localhost:8080";
+    var ws = new WebSocket(uri);
+    ws.onopen = (event) => {
+      console.log('ws onopen', event);
       ws.send('from client: hello');
+      heartCheck.init(ws);
     };
     ws.onmessage = (event) => {
       console.log('ws onmessage');
       console.log('from server: ', event);
-		console.log(ws);
       showLog(event.data);
+      heartCheck.clear();
     };
-	ws.onclose = (event) => {
-		console.log("close", event);
-		console.log(ws);
-	};
-	ws.onerror = (event) => {
-		console.log("error", event);
-		console.log(ws);
-	};
+    ws.onclose = (event) => {
+      console.log("ws close", event);
+      console.log(ws);
+      heartCheck.clear(true);
+    };
+    ws.onerror = (event) => {
+      console.log("ws error", event);
+      console.log(ws);
+    };
+
   </script>
 </head>
 
 <body>
   <div id="container"></div>
 </body>
+
 </html>
