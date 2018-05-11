@@ -10,21 +10,13 @@ wss.on('connection', function connection(ws) {
   ws.on('message', (message) => {
     try{
       console.log('server: received: %s', message);
-      ws.send("hello" + i++);
+      setTimeout(()=>{
+        //延迟1秒回应
+        ws.send(i++ + " : " + message);
+      },1000);
     }catch(e){
       console.log("ws server is error", e);
     }
   });
-
-  //setInterval(() => {
-  //ws.send('world: ' + new Date());
-  //},5000);
 });
 console.log("websocket server is listening...");
-/*
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
-});
-
-app.listen(3000);
-*/

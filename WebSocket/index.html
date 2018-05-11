@@ -17,6 +17,7 @@
       timer: 0,
       _obj : null,
       _callback:null,
+      _time: 10000, //心跳间隔10秒
       init: function(wsObj, callback) {
         console.log("init");
         this._obj = wsObj;
@@ -26,52 +27,56 @@
       sayHi: function() {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-          console.log("time's out!")
-          this.onError();
-        }, 10000);
-        this._obj.send("hi," + this.timer);
+          if(1 == this._obj.readyState){
+            this._obj.send("check : " + this.timer);            
+          }
+        }, this._time);
         console.log("sayHi:" + this.timer);
       },
       clear: function(flag) {
         console.log("clear:" + this.timer);
         clearTimeout(this.timer);
-        if(true === flag){
-          console.log("heartCheck finished");
-          return;
-        }
-        setTimeout(()=>{
-          this.sayHi();
-        }, 3000);
       },
       onError: function() {
         console.log("onError:",this.timer);
-        clearTimeout(this.timer);
+        this.clear();
         this._callback && this._callback();
       }
     };
-    //let hc = new heartCheck();
+    
     let uri = "ws://localhost:8080";
     var ws = new WebSocket(uri);
     ws.onopen = (event) => {
       console.log('ws onopen', event);
-      ws.send('from client: hello');
-      heartCheck.init(ws);
+      showLog("go~");
+      MsgBegin && MsgBegin();
+      heartCheck.init(ws, ()=>{
+        console.log("reconnect...");
+        ws = new WebSocket(uri);
+      });
     };
     ws.onmessage = (event) => {
-      console.log('ws onmessage');
-      console.log('from server: ', event);
+      console.log('ws onmessage1', event,ws.readyState);
       showLog(event.data);
-      heartCheck.clear();
+      heartCheck.sayHi();
     };
     ws.onclose = (event) => {
-      console.log("ws close", event);
-      console.log(ws);
-      heartCheck.clear(true);
+      console.log("ws close", event, ws);
+      heartCheck.clear();
     };
     ws.onerror = (event) => {
-      console.log("ws error", event);
-      console.log(ws);
+      console.log("ws error", event, ws);
+      heartCheck.onError();
     };
+    let MsgBegin = ()=>{
+      let n = Math.random() * 100000;
+      setTimeout(()=>{
+        if(1 == ws.readyState){
+          ws.send("send:" + n);
+        }
+        MsgBegin();
+      },n);
+    }
 
   </script>
 </head>
